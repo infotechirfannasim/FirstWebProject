@@ -1,4 +1,4 @@
-package com.learning.fp;
+package com.learning.fp.entity;
 
 public class Student {
 

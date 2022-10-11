@@ -1,5 +1,6 @@
-package com.learning.fp;
+package com.learning.fp.service;
 
+import com.learning.fp.entity.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,8 +9,9 @@ import java.util.List;
 @Service
 public class StudentService {
 
+    public static List<Student> students = new ArrayList<>();
+
     public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
         Student std1 = new Student(1, "irfan");
         Student std2 = new Student(2, "makki");
         Student std3 = new Student(3, "dasho");
@@ -42,4 +44,23 @@ public class StudentService {
         return student;
     }
 
+    public Student createStudent(Student student) {
+        students.add(student);
+        return student;
+    }
+
+    public Student updateStudent(Student student) {
+        Student stdFound = null;
+        for (Student std : students) {
+            if (std.getId() == student.getId()) {
+                stdFound = std;
+                break;
+            }
+        }
+        if (stdFound != null) {
+            stdFound.setId(student.getId());
+            stdFound.setName(student.getName());
+        }
+        return stdFound;
+    }
 }

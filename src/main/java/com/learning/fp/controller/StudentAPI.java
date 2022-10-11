@@ -1,10 +1,9 @@
-package com.learning.fp;
+package com.learning.fp.controller;
 
+import com.learning.fp.entity.Student;
+import com.learning.fp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +33,17 @@ public class StudentAPI {
     public Student getSingleStudent(@RequestParam(value = "stdId") long stdId) {
 
         return studentService.getStudentById(stdId);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public Student createStudent(@RequestBody Student student) {
+
+        return studentService.createStudent(student);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public Student updateStudent(@RequestBody Student student) {
+
+        return studentService.updateStudent(student);
     }
 }
